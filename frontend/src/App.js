@@ -1,41 +1,46 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import SpotifyWebApi from "spotify-web-api-js";
 import Login from "./components/Login.js";
+import List from "./components/List.js";
+
 import "./App.css";
 
 
 class App extends Component {
   constructor() {
     super();
-    // this.spotifyApi = new SpotifyWebApi();
+    const params = this.getHashParams();
+    const token = params.access_token;
     this.state = {
-      nowPlaying: { name: "Not Checked", albumArt: "", artist: "" },
+      loggedIn: token ? true : false,
       spotifyApi: new SpotifyWebApi()
     };
+    if (token) {
+      this.state.spotifyApi.setAccessToken(token);
+    }
   }
 
-  getNowPlaying = () => {
-    this.state.spotifyApi.getMyCurrentPlaybackState().then((response) => {
-      console.log(response);
-      this.setState({
-        nowPlaying: {
-          name: response.item.name,
-          albumArt: response.item.album.images[0].url,
-          artist: response.item.artists[0].name
-        },
-      });
-    });
-  };
+  getHashParams() {
+    var hashParams = {};
+    var e,
+      r = /([^&;=]+)=?([^&;]*)/g,
+      q = window.location.hash.substring(1);
+    while ((e = r.exec(q))) {
+      hashParams[e[1]] = decodeURIComponent(e[2]);
+    }
+    return hashParams;
+  }
 
   render() {
     return (
       <div className="App">
-        <Login
-          nowPlaying={this.state.nowPlaying}
-          getNowPlaying={this.getNowPlaying}
-          spotifyApi={this.state.spotifyApi}
-        ></Login>
+        {!this.state.loggedIn && (
+          <Login></Login>
+        )}
+        <br />
+        {this.state.loggedIn && (
+          <List spotifyApi={this.state.spotifyApi}></List>
+        )}
       </div>
     );
   }

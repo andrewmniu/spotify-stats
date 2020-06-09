@@ -1,5 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
+import TopTracks from "./TopTracks.js";
 
 class Login extends React.Component {
   constructor(props) {
@@ -35,15 +36,7 @@ class Login extends React.Component {
         )}
         <br />
         {this.state.loggedIn && (
-          <React.Fragment>
-            <button onClick={this.props.getNowPlaying}>
-              Check Now Playing
-            </button>
-            <div>Now Playing: {this.props.nowPlaying.name}</div>
-            <div>
-              <img src={this.props.nowPlaying.albumArt} />
-            </div>
-          </React.Fragment>
+          <TopTracks spotifyApi={this.props.spotifyApi}></TopTracks>
         )}
       </div>
     );

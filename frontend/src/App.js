@@ -37,7 +37,6 @@ class App extends Component {
         {!this.state.loggedIn && (
           <Login></Login>
         )}
-        <br />
         {this.state.loggedIn && (
           <List spotifyApi={this.state.spotifyApi}></List>
         )}

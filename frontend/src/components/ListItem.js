@@ -1,25 +1,30 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 class ListItem extends React.Component {
-  render () {
-    if(this.props.itemType){
-      return(
-        <div className="ListItem">
-          <h3>
-            {this.props.itemInfo.rank}. {this.props.itemInfo.name}
-          </h3>
-          <img src={this.props.itemInfo.image} />
-        </div>
+  render() {
+    if (this.props.itemType) {
+      return (
+        <div className="list-group-item rounded">
+          <p className="d-inline h2">{this.props.itemInfo.rank}. </p>
+          <a href={this.props.itemInfo.link} target="_blank" className="h1 text-info">
+            {this.props.itemInfo.name}
+          </a>
+          <img src={this.props.itemInfo.image} className="float-right"/>
+          </div>
       );
-    }
-    else{
-      return(
-        <div className="ListItem">
-          <h3>
-            {this.props.itemInfo.rank}. {this.props.itemInfo.name} by {this.props.itemInfo.artist}
-          </h3>
-          <img src={this.props.itemInfo.artwork} />
+    } else {
+      return (
+        <div className="list-group-item rounded">
+          <p className="h2">{this.props.itemInfo.rank}. </p>
+          <a href={this.props.itemInfo.link} target="_blank" className="h1 d-inline-block text-info w-75">
+            {this.props.itemInfo.name}
+          </a>{" "}
+          <img
+            src={this.props.itemInfo.artwork}
+            className="float-right d-inline-block"
+          />
+        <small className="text-muted d-block h5">{this.props.itemInfo.artist}</small>
         </div>
       );
     }
@@ -28,7 +33,7 @@ class ListItem extends React.Component {
 
 ListItem.propTypes = {
   itemType: PropTypes.bool.isRequired,
-  itemInfo: PropTypes.object.isRequired
-}
+  itemInfo: PropTypes.object.isRequired,
+};
 
 export default ListItem;

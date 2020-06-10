@@ -20,28 +20,28 @@ class List extends React.Component {
   getHeader = () => {
     let header = "Your Top ";
     header += this.state.itemType ? "Artists - " : "Tracks - ";
-    switch(this.state.timeRange){
+    switch (this.state.timeRange) {
       case "short_term":
-        header += "Last 4 Weeks"
+        header += "Last 4 Weeks";
         break;
       case "medium_term":
-        header += "Last 6 Months"
+        header += "Last 6 Months";
         break;
       case "long_term":
-        header += "All Time"
+        header += "All Time";
         break;
       default:
         console.log("error");
         break;
     }
     return header;
-  }
+  };
 
   getTracks = () => {
     return this.props.spotifyApi
       .getMyTopTracks({ time_range: this.state.timeRange, limit: "50" })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         const tracks = [];
         response.items.forEach((track, idx) => {
           const trackObj = {
@@ -49,6 +49,7 @@ class List extends React.Component {
             artist: track.artists[0].name,
             artwork: track.album.images[0].url,
             rank: idx + 1,
+            link: track.external_urls.spotify,
           };
           tracks.push(trackObj);
         });
@@ -67,6 +68,7 @@ class List extends React.Component {
             name: artist.name,
             image: artist.images[0].url,
             rank: idx + 1,
+            link: artist.external_urls.spotify,
           };
           artists.push(artistObj);
         });
@@ -87,7 +89,7 @@ class List extends React.Component {
     }
   };
 
-  changeTimeRange = async(e) => {
+  changeTimeRange = async (e) => {
     await this.setState({ timeRange: e.target.value });
     if (this.state.itemType) {
       this.getArtists().then((artists) => {
@@ -102,7 +104,7 @@ class List extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <React.Fragment>
         <Controls
           itemType={this.state.itemType}
           timeRange={this.state.timeRange}
@@ -111,17 +113,19 @@ class List extends React.Component {
           spotifyApi={this.props.spotifyApi}
           title={this.getHeader()}
         ></Controls>
-      <h1>{this.getHeader()}</h1>
-        {this.state.items.map((itemInfo, idx) => {
-          return (
-            <ListItem
-              itemType={this.state.itemType}
-              itemInfo={itemInfo}
-              key={idx}
-            ></ListItem>
-          );
-        })}
-      </div>
+        <div className="container mb-5 list-group">
+          <h1 className="display-3">{this.getHeader()}</h1>
+          {this.state.items.map((itemInfo, idx) => {
+            return (
+              <ListItem
+                itemType={this.state.itemType}
+                itemInfo={itemInfo}
+                key={idx}
+              ></ListItem>
+            );
+          })}
+        </div>
+      </React.Fragment>
     );
   }
 }

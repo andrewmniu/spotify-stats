@@ -41,7 +41,7 @@ class List extends React.Component {
     return this.props.spotifyApi
       .getMyTopTracks({ time_range: this.state.timeRange, limit: "50" })
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         const tracks = [];
         response.items.forEach((track, idx) => {
           const trackObj = {
@@ -104,9 +104,12 @@ class List extends React.Component {
     return (
       <div className="container">
         <Controls
+          itemType={this.state.itemType}
           timeRange={this.state.timeRange}
           toggleItems={this.toggleItems}
           changeTimeRange={this.changeTimeRange}
+          spotifyApi={this.props.spotifyApi}
+          title={this.getHeader()}
         ></Controls>
       <h1>{this.getHeader()}</h1>
         {this.state.items.map((itemInfo, idx) => {

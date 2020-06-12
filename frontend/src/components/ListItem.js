@@ -6,9 +6,13 @@ class ListItem extends React.Component {
     const genreArray = [...this.props.itemInfo.genres];
     let genres = "";
     if (genreArray.length > 0) {
-      genres += genreArray[0];
+      genres += genreArray[0].replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
       for (let genre of genreArray.slice(1)) {
-        genres += `, ${genre}`;
+        genres += `, ${genre.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })}`;
       }
     }
     return genres;

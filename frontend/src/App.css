@@ -62,6 +62,7 @@ header h2 {
   top: 0;
   z-index: 1;
   background-color: #121212;
+  /* background-color: orange; */
   color: white;
   padding: 1% 0;
   height: 10%;
@@ -94,6 +95,51 @@ header h2 {
   margin: 0px 10px;
   /* margin-bottom: 5px; */
   height: 34px;
+}
+
+.btn-group {
+  background-color: #6c757d;
+  border-radius: 5px;
+}
+
+.list-sizing {
+  width:0px;
+  height: 0px;
+  margin: 0px;
+  padding: 16px 16px;
+  border: 1px;
+  transition: 0.5s;
+}
+
+input[type="radio"]{
+    visibility:hidden;
+}
+
+.active {
+  background-color: #1db954 !important;
+}
+
+#ls-1 {
+  background: url(./large.png);
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#ls-2 {
+  margin-left: -1px;
+  background: url(./medium.gif);
+  background-size: 17px 17px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#ls-3 {
+  margin-left: -1px;
+  background: url(./small.png);
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .body {

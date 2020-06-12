@@ -32,11 +32,24 @@ class Controls extends React.Component {
               Create Playlist
             </button>
           </div>
+          <div className="btn-group control" data-toggle="buttons">
+            <label className="btn list-sizing active" id="ls-1">
+              <input type="radio" name="options" checked readOnly></input>
+            </label>
+            <label className="btn list-sizing" id="ls-2">
+              <input type="radio" name="options" readOnly></input>
+            </label>
+            <label className="btn list-sizing" id="ls-3">
+              <input type="radio" name="options" readOnly></input>
+            </label>
+          </div>
         </div>
         <NewPlaylist
           timeRange={this.props.timeRange}
           spotifyApi={this.props.spotifyApi}
-          title={`My ${this.props.title[0].substring(5)} - ${this.props.title[1]}`}
+          title={`My ${this.props.title[0].substring(5)} - ${
+            this.props.title[1]
+          }`}
         ></NewPlaylist>
       </React.Fragment>
     );

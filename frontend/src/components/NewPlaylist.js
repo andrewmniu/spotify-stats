@@ -18,7 +18,7 @@ class NewPlaylist extends React.Component {
   }
 
   createPlaylist = async (e) => {
-    document.getElementById("submit").innerHTML =
+    document.getElementById("submit-btn").innerHTML =
       '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
     e.preventDefault();
     let id = null;
@@ -57,13 +57,14 @@ class NewPlaylist extends React.Component {
               document.getElementById("new-playlist-image").src =
                 response.images[0].url;
               document.getElementById("open-playlist").href =
-                response.external_urls.spotify
+                response.external_urls.spotify;
             });
           });
       });
   };
 
   resetForm = () => {
+    document.getElementById("modal-title").textContent = "Playlist Details";
     this.setState({
       playlistName: "",
       playlistDescription: defaultDescription,
@@ -99,10 +100,8 @@ class NewPlaylist extends React.Component {
       >
         <div className="modal-dialog" role="document">
           <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Playlist Details
-              </h5>
+            <div className="modal-header text-center">
+              <h5 id="modal-title">Playlist Details</h5>
               <button
                 type="button"
                 className="close"
@@ -116,21 +115,23 @@ class NewPlaylist extends React.Component {
             {this.state.justCreated && (
               <React.Fragment>
                 <h2 className="text-center mt-3">{this.state.playlistName}</h2>
-                <img className="mb-3" id="new-playlist-image"></img>
+                <img
+                  id="new-playlist-image"
+                  alt={`${this.state.playlistName} Cover`}
+                ></img>
                 <div className="modal-footer">
                   <a
-                    href="http://google.com"
+                    href="/#"
                     id="open-playlist"
                     target="_blank"
-                    role="button"
-                    className="spotify-btn"
+                    rel="noopener noreferrer"
                   >
-                    Open Playlist
+                    <button className="spotify-btn">Open Playlist</button>
                   </a>
                   <button
                     onClick={this.resetForm}
                     type="button"
-                    className="spotify-btn"
+                    className="spotify-btn-2"
                     data-dismiss="modal"
                   >
                     Close

@@ -1,16 +1,182 @@
-*{
-  font-family: "Helvetica", "Arial", sans-serif;
-}
-.controls {
-  text-align: center;
-  background-color: black;
-  color: white;
-  padding: 20px 0;
-  height: 12%;
+* {
+  font-family: "Helvetica Neue", "Helvetica", "Arial";
+  box-sizing: border-box;
 }
 
-.container {
-  margin-top: 12%;
+.login-bg {
+  background-color: #181818;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login {
+  position: absolute;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  text-align: center;
+  color: white;
+}
+
+.login h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.login p {
+  margin-left: 10%;
+  /* text-align: left; */
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+header {
+  background: url(./spotify-theme-music-bkg-dark.png);
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  padding: 20px 0;
+  color: white;
+}
+
+header h1 {
+  font-size: 70px;
+  font-weight: bold;
+  margin: 0;
+}
+
+header h2 {
+  /* color: rgb(200,200,200); */
+  font-size: 50px;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #121212;
+  color: white;
+  padding: 1% 0;
+  height: 10%;
+}
+
+.control {
+  margin: 0% 2%;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.toggle-label {
+  display: inline;
+  margin: 0 10px;
+}
+
+.btn-control {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  /* justify-content: center; */
+}
+
+.btn-control select {
+  margin: 0px 10px;
+  /* margin-bottom: 5px; */
+  height: 34px;
+}
+
+.body {
+  padding-top: 20px;
+  /* background-color: #f2f2f2; */
+  background-color: #181818;
+}
+
+.list-image-large {
+  display: inline-block;
+  float: right;
+  width: 20%;
+  height: auto;
+}
+
+.link-large {
+  /* color: #1db954; */
+  display: inline-block;
+  max-width: 80%;
+  font-size: 50px;
+  color: #17a2b8;
+}
+
+.link-large:hover {
+  /* color: #1ed760; */
+  color: #0f6f89;
+  text-decoration: none;
+}
+
+.info-large {
+  display: block;
+  color: #999999;
+  font-size: 22px;
+  margin-top: -5px;
+  padding-left: 5px;
+}
+
+.info-large:hover {
+  color: #888888;
+  text-decoration: none;
+}
+
+.genres:hover {
+  color: #999999 !important;
+}
+
+.modal-content {
+  background-color: #181818;
+  color: white;
+}
+
+.modal-header {
+  background-color: #282828;
+  text-align: center;
+  border: none;
+}
+
+.modal-header h5 {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.modal-title {
+  position: absolute;
+}
+
+.close {
+  color: white;
+}
+
+#submit {
+  text-align: center;
+  margin: 20px 0px 4px;
+}
+
+.modal-footer {
+  display: block;
+  background-color: #282828;
+  border: none;
+  text-align: center;
 }
 
 img {
@@ -21,21 +187,46 @@ img {
   width: 90%;
   height: 90%;
   margin-left: 5%;
-}
-.spotify-btn{
-  background-color: #1DB954;
-  border:none;
-  outline: none;
-  color: white;
-  border-radius:50px;
-  padding: 5px 25px;
+  padding-bottom: 20px;
 }
 
-.spotify-btn:hover{
-  background-color: #1ED760;
+.spotify-btn {
+  background-color: #1db954;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 5px 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: 0.5s;
 }
-.spotify-btn:focus{
-  outline:none;
+
+.spotify-btn:hover {
+  background-color: #1ed760;
+}
+
+.spotify-btn:focus {
+  outline: none;
+}
+
+.spotify-btn-2 {
+  background-color: inherit;
+  border: white solid 2px;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 4px 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.spotify-btn-2:hover {
+  background-color: white;
+  color: #121212;
 }
 
 input[type="checkbox"]:focus {
@@ -44,34 +235,33 @@ input[type="checkbox"]:focus {
 
 input[type="checkbox"] {
   position: relative;
-  width: 80px;
-  height: 40px;
+  width: 66px;
+  height: 34px;
   -webkit-appearance: none;
   background: #03a9f4;
-  border-radius: 20px;
+  border-radius: 17px;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   transition: 0.5s;
 }
 
 input:checked[type="checkbox"] {
-  background: #42d75f;
+  background: #1db954;
 }
-
 
 input[type="checkbox"]:before {
   content: "";
   position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
   top: 0;
   left: 0;
-  background: gray;
+  background: rgb(175, 175, 175);
   transform: scale(1.1);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: 0.5s;
 }
 
 input:checked[type="checkbox"]:before {
-  left: 40px;
+  left: 34px;
 }

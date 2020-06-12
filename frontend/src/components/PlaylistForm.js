@@ -38,7 +38,7 @@ class PlaylistForm extends React.Component {
             onChange={this.props.onChange}
           ></textarea>
         </div>
-        <div className="form-group border-bottom pb-3">
+        <div className="form-group">
           <label htmlFor="exampleFormControlSelect2">Playlist Size</label>
           <select
             className="form-control"
@@ -52,8 +52,8 @@ class PlaylistForm extends React.Component {
             {this.createSelectItems()}
           </select>
         </div>
-        <div className="text-center">
-          <button type="submit" id="submit" className="spotify-btn">
+        <div id="submit">
+          <button type="submit" id="submit-btn" className="spotify-btn">
             Create Playlist
           </button>
         </div>

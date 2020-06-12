@@ -19,22 +19,17 @@ class List extends React.Component {
 
   getHeader = () => {
     let header = "Your Top ";
-    header += this.state.itemType ? "Artists - " : "Tracks - ";
+    header += this.state.itemType ? "Artists" : "Tracks";
     switch (this.state.timeRange) {
       case "short_term":
-        header += "Last 4 Weeks";
-        break;
+        return [header, "Last 4 Weeks"];
       case "medium_term":
-        header += "Last 6 Months";
-        break;
+        return [header, "Last 6 Months"];
       case "long_term":
-        header += "All Time";
-        break;
+        return [header, "All Time"];
       default:
-        console.log("error");
-        break;
+        return "error";
     }
-    return header;
   };
 
   getTracks = () => {
@@ -47,9 +42,12 @@ class List extends React.Component {
           const trackObj = {
             name: track.name,
             artist: track.artists[0].name,
+            artistLink: track.artists[0].external_urls.spotify,
             artwork: track.album.images[0].url,
-            rank: idx + 1,
+            album: track.album.name,
+            albumLink: track.album.external_urls.spotify,
             link: track.external_urls.spotify,
+            rank: idx + 1
           };
           tracks.push(trackObj);
         });
@@ -67,8 +65,9 @@ class List extends React.Component {
           const artistObj = {
             name: artist.name,
             image: artist.images[0].url,
-            rank: idx + 1,
             link: artist.external_urls.spotify,
+            genres: artist.genres.slice(0, 3),
+            rank: idx + 1,
           };
           artists.push(artistObj);
         });
@@ -105,6 +104,10 @@ class List extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <header>
+          <h1>{this.getHeader()[0]}</h1>
+          <h2>{this.getHeader()[1]}</h2>
+        </header>
         <Controls
           itemType={this.state.itemType}
           timeRange={this.state.timeRange}
@@ -113,17 +116,18 @@ class List extends React.Component {
           spotifyApi={this.props.spotifyApi}
           title={this.getHeader()}
         ></Controls>
-        <div className="container mb-5 list-group">
-          <h1 className="display-3">{this.getHeader()}</h1>
-          {this.state.items.map((itemInfo, idx) => {
-            return (
-              <ListItem
-                itemType={this.state.itemType}
-                itemInfo={itemInfo}
-                key={idx}
-              ></ListItem>
-            );
-          })}
+        <div className="body">
+          <div className="container mb-5 list-group">
+            {this.state.items.map((itemInfo, idx) => {
+              return (
+                <ListItem
+                  itemType={this.state.itemType}
+                  itemInfo={itemInfo}
+                  key={idx}
+                ></ListItem>
+              );
+            })}
+          </div>
         </div>
       </React.Fragment>
     );

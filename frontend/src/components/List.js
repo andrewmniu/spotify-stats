@@ -10,6 +10,7 @@ class List extends React.Component {
       itemType: false, // false for tracks, true for artists
       items: [],
       timeRange: "short_term",
+      listSize: "large"
     };
   }
 
@@ -101,6 +102,14 @@ class List extends React.Component {
     }
   };
 
+  changeListSize = (e) => {
+    const size = e.target.value;
+    Array.from(document.getElementsByClassName(this.state.listSize)).forEach(element => {
+      element.classList.replace(this.state.listSize, size)
+    })
+    this.setState({listSize: size});
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -111,17 +120,20 @@ class List extends React.Component {
         <Controls
           itemType={this.state.itemType}
           timeRange={this.state.timeRange}
+          listSize={this.state.listSize}
           toggleItems={this.toggleItems}
           changeTimeRange={this.changeTimeRange}
+          changeListSize={this.changeListSize}
           spotifyApi={this.props.spotifyApi}
           title={this.getHeader()}
         ></Controls>
         <div className="body">
-          <div className="container mb-5 list-group">
+          <div className="container pb-5 list-group">
             {this.state.items.map((itemInfo, idx) => {
               return (
                 <ListItem
                   itemType={this.state.itemType}
+                  listSize={this.state.listSize}
                   itemInfo={itemInfo}
                   key={idx}
                 ></ListItem>

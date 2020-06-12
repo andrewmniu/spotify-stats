@@ -12,36 +12,49 @@ class Controls extends React.Component {
             <input type="checkbox" onChange={this.props.toggleItems}></input>
             <p className="toggle-label">Artists</p>
           </div>
-          <div className="btn-control control">
-            <select
-              className="spotify-btn-2"
-              value={this.props.timeRange}
-              onChange={this.props.changeTimeRange}
-            >
-              <option value="short_term">4 Weeks</option>
-              <option value="medium_term">6 Months</option>
-              <option value="long_term">All Time</option>
-            </select>
-            <button
-              type="button"
-              className="spotify-btn"
-              data-toggle="modal"
-              data-target="#exampleModal"
-              disabled={this.props.itemType}
-            >
-              Create Playlist
-            </button>
-          </div>
+          <select
+            className="spotify-btn-2 control"
+            value={this.props.timeRange}
+            onChange={this.props.changeTimeRange}
+          >
+            <option value="short_term">4 Weeks</option>
+            <option value="medium_term">6 Months</option>
+            <option value="long_term">All Time</option>
+          </select>
+          <button
+            type="button"
+            className="spotify-btn control"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            disabled={this.props.itemType}
+          >
+            Create Playlist
+          </button>
           <div className="btn-group control" data-toggle="buttons">
-            <label className="btn list-sizing active" id="ls-1">
-              <input type="radio" name="options" checked readOnly></input>
-            </label>
-            <label className="btn list-sizing" id="ls-2">
-              <input type="radio" name="options" readOnly></input>
-            </label>
-            <label className="btn list-sizing" id="ls-3">
-              <input type="radio" name="options" readOnly></input>
-            </label>
+            <button
+              className="btn list-sizing active"
+              onClick={this.props.changeListSize}
+              value="large"
+              id="ls-1"
+            >
+              <input type="radio" name="options" defaultChecked></input>
+            </button>
+            <button
+              className="btn list-sizing"
+              onClick={this.props.changeListSize}
+              value="medium"
+              id="ls-2"
+            >
+              <input type="radio" name="options"></input>
+            </button>
+            <button
+              className="btn list-sizing"
+              onClick={this.props.changeListSize}
+              value="small"
+              id="ls-3"
+            >
+              <input type="radio" name="options"></input>
+            </button>
           </div>
         </div>
         <NewPlaylist
@@ -58,9 +71,11 @@ class Controls extends React.Component {
 
 Controls.propTypes = {
   itemType: PropTypes.bool.isRequired,
-  toggleItems: PropTypes.func.isRequired,
   timeRange: PropTypes.string.isRequired,
+  listSize: PropTypes.string.isRequired,
+  toggleItems: PropTypes.func.isRequired,
   changeTimeRange: PropTypes.func.isRequired,
+  changeListSize: PropTypes.func.isRequired,
   spotifyApi: PropTypes.object.isRequired,
   title: PropTypes.array.isRequired,
 };

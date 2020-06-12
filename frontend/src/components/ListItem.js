@@ -21,32 +21,38 @@ class ListItem extends React.Component {
   render() {
     if (this.props.itemType) {
       return (
-        <div className="list-group-item">
-          <p className="h2">{this.props.itemInfo.rank}. </p>
+        <div className={`list-group-item ${this.props.listSize}`}>
+          <p className={`rank ${this.props.listSize}`}>
+            {this.props.itemInfo.rank}.{" "}
+          </p>
           <a
             href={this.props.itemInfo.link}
             target="_blank"
-            className="link-large"
+            className={`link ${this.props.listSize}`}
             rel="noopener noreferrer"
           >
             {this.props.itemInfo.name}
           </a>
           <img
             src={this.props.itemInfo.image}
-            className="list-image-large"
+            className={`list-image ${this.props.listSize}`}
             alt={this.props.itemInfo.name}
           />
-          <p className="info-large genres">{this.getGenres()}</p>
+          <p className={`info ${this.props.listSize} genres`}>
+            {this.getGenres()}
+          </p>
         </div>
       );
     } else {
       return (
-        <div className="list-group-item">
-          <p className="h2">{this.props.itemInfo.rank}. </p>
+        <div className={`list-group-item ${this.props.listSize}`}>
+          <p className={`rank ${this.props.listSize}`}>
+            {this.props.itemInfo.rank}.{" "}
+          </p>
           <a
             href={this.props.itemInfo.link}
             target="_blank"
-            className="link-large"
+            className={`link ${this.props.listSize}`}
             rel="noopener noreferrer"
           >
             {this.props.itemInfo.name}
@@ -58,14 +64,14 @@ class ListItem extends React.Component {
           >
             <img
               src={this.props.itemInfo.artwork}
-              className="list-image-large"
+              className={`list-image ${this.props.listSize}`}
               alt={this.props.itemInfo.album}
             />
           </a>
           <a
             href={this.props.itemInfo.artistLink}
             target="_blank"
-            className="info-large"
+            className={`info ${this.props.listSize}`}
             rel="noopener noreferrer"
           >
             {this.props.itemInfo.artist}
@@ -78,6 +84,7 @@ class ListItem extends React.Component {
 
 ListItem.propTypes = {
   itemType: PropTypes.bool.isRequired,
+  listSize: PropTypes.string.isRequired,
   itemInfo: PropTypes.object.isRequired,
 };
 

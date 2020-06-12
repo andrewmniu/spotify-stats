@@ -91,7 +91,7 @@ header h2 {
   /* justify-content: center; */
 }
 
-.btn-control select {
+.controls select {
   margin: 0px 10px;
   /* margin-bottom: 5px; */
   height: 34px;
@@ -143,43 +143,132 @@ input[type="radio"]{
 }
 
 .body {
-  padding-top: 20px;
-  /* background-color: #f2f2f2; */
   background-color: #181818;
+  padding-top: 20px;
 }
 
-.list-image-large {
+.list-group-item{
+  background-color: #f3f3f3;
+}
+
+.list-group-item.large{
+  border: #555555 solid 5px;
+}
+
+.list-group-item.medium{
+  border: #555555 solid 3px;
+  padding: 10px 10px;
+}
+
+.list-group-item.small{
+  border: #555555 solid 1px;
+  padding: 10px 10px;
+}
+
+.rank.large{
+  font-size: 30px;
+  font-weight: bold;
+  line-height:30px;
+}
+
+.rank.medium{
+  display:inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 12px;
+  margin-bottom: 0px;
+  width: 20px;
+}
+
+.rank.small{
+  display:inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 12px;
+  margin-bottom: 0px;
+  width: 20px;
+}
+
+.list-image.large {
   display: inline-block;
   float: right;
   width: 20%;
   height: auto;
 }
 
-.link-large {
+.list-image.medium {
+  display: inline-block;
+  float: right;
+  width: 10%;
+  height: auto;
+}
+
+.list-image.small {
+  display:none;
+}
+
+.link.large {
   /* color: #1db954; */
+  line-height: 52px;
   display: inline-block;
   max-width: 80%;
   font-size: 50px;
   color: #17a2b8;
 }
 
-.link-large:hover {
+.link.medium{
+  line-height: 32px;
+  display: inline-block;
+  max-width: 87%;
+  font-size: 30px;
+  color: #17a2b8;
+}
+
+.link.small{
+  line-height: 30px;
+  display: inline-block;
+  max-width: 95%;
+  font-size: 30px;
+  color: #17a2b8;
+}
+
+.link:hover {
   /* color: #1ed760; */
   color: #0f6f89;
   text-decoration: none;
 }
 
-.info-large {
+
+.info.large {
   display: block;
   color: #999999;
   font-size: 22px;
-  margin-top: -5px;
   padding-left: 5px;
 }
 
-.info-large:hover {
+.info.medium {
+  display: block;
+  color: #999999;
+  font-size: 16px;
+  /* padding-left: 35px; */
+  padding-left: 32px;
+}
+
+.info.small {
+  display: block;
+  color: #999999;
+  font-size: 16px;
+  line-height: 16px;
+  padding-left: 32px;
+}
+
+.info:hover {
   color: #888888;
   text-decoration: none;
+}
+
+.genres{
+  margin-bottom: 0px;
 }
 
 .genres:hover {
@@ -264,7 +353,7 @@ img {
   color: white;
   font-weight: bold;
   border-radius: 50px;
-  padding: 4px 24px;
+  padding: 3px 25px;
   white-space: nowrap;
   overflow: hidden;
   transition: 0.5s;

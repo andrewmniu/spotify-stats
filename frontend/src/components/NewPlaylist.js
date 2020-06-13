@@ -1,5 +1,6 @@
 import React from "react";
-import Modal from "react-bootstrap/Modal"
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
 import PropTypes from "prop-types";
 import PlaylistForm from "./PlaylistForm.js";
 
@@ -15,6 +16,7 @@ class NewPlaylist extends React.Component {
       playlistName: "",
       playlistDescription: defaultDescription,
       justCreated: false,
+      modalShow: false,
     };
   }
 
@@ -71,6 +73,7 @@ class NewPlaylist extends React.Component {
       playlistDescription: defaultDescription,
       playlistSize: "50",
       justCreated: false,
+      modalShow: false,
     });
   };
 
@@ -91,56 +94,24 @@ class NewPlaylist extends React.Component {
 
   render() {
     return (
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header text-center">
-              <h5 id="modal-title">Playlist Details</h5>
-              <button
-                type="button"
-                className="close"
-                onClick={this.resetForm}
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            {this.state.justCreated && (
-              <React.Fragment>
-                <h2 className="text-center mt-3">{this.state.playlistName}</h2>
-                <img
-                  id="new-playlist-image"
-                  alt={`${this.state.playlistName} Cover`}
-                ></img>
-                <div className="modal-footer">
-                  <a
-                    href="/#"
-                    id="open-playlist"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="spotify-btn">Open Playlist</button>
-                  </a>
-                  <button
-                    onClick={this.resetForm}
-                    type="button"
-                    className="spotify-btn-2"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                </div>
-              </React.Fragment>
-            )}
-            {!this.state.justCreated && (
+      <React.Fragment>
+        <button
+          type="button"
+          className="spotify-btn control"
+          onClick={() => this.setState({ modalShow: true })}
+          disabled={this.props.itemType}
+        >
+          Create Playlist
+        </button>
+        <Modal show={this.state.modalShow} onHide={this.resetForm}>
+          <Modal.Header className="text-center">
+            <h5 id="modal-title">Playlist Details</h5>
+            <button type="button" className="close" onClick={this.resetForm}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </Modal.Header>
+          {!this.state.justCreated && (
+            <Modal.Body>
               <PlaylistForm
                 title={this.props.title}
                 dropdownSize={this.state.dropdownSize}
@@ -153,10 +124,38 @@ class NewPlaylist extends React.Component {
                 onBlur={this.onBlur}
                 sizeChange={this.sizeChange}
               ></PlaylistForm>
-            )}
-          </div>
-        </div>
-      </div>
+            </Modal.Body>
+          )}
+          {this.state.justCreated && (
+            <React.Fragment>
+              <Modal.Body>
+                <h2 className="text-center mt-3">{this.state.playlistName}</h2>
+                <img
+                  id="new-playlist-image"
+                  alt={`${this.state.playlistName} Cover`}
+                ></img>
+              </Modal.Body>
+              <Modal.Footer>
+                <a
+                  href="/#"
+                  id="open-playlist"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="spotify-btn">Open Playlist</button>
+                </a>
+                <button
+                  onClick={this.resetForm}
+                  type="button"
+                  className="spotify-btn-2"
+                >
+                  Close
+                </button>
+              </Modal.Footer>
+            </React.Fragment>
+          )}
+        </Modal>
+      </React.Fragment>
     );
   }
 }

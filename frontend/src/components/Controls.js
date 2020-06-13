@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import NewPlaylist from "./NewPlaylist.js";
 
 class Controls extends React.Component {
+
   render() {
     return (
       <React.Fragment>
@@ -21,15 +22,14 @@ class Controls extends React.Component {
             <option value="medium_term">6 Months</option>
             <option value="long_term">All Time</option>
           </select>
-          <button
-            type="button"
-            className="spotify-btn control"
-            data-toggle="modal"
-            data-target="#exampleModal"
-            disabled={this.props.itemType}
-          >
-            Create Playlist
-          </button>
+          <NewPlaylist
+            timeRange={this.props.timeRange}
+            spotifyApi={this.props.spotifyApi}
+            title={`My ${this.props.title[0].substring(5)} - ${
+              this.props.title[1]
+            }`}
+            ></NewPlaylist>
+
           <div className="btn-group control" data-toggle="buttons">
             <button
               className="btn list-sizing active"
@@ -57,13 +57,6 @@ class Controls extends React.Component {
             </button>
           </div>
         </div>
-        <NewPlaylist
-          timeRange={this.props.timeRange}
-          spotifyApi={this.props.spotifyApi}
-          title={`My ${this.props.title[0].substring(5)} - ${
-            this.props.title[1]
-          }`}
-        ></NewPlaylist>
       </React.Fragment>
     );
   }

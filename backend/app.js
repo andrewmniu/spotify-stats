@@ -17,7 +17,7 @@ require('dotenv').config();
 var client_id = process.env.CLIENT_ID; // Your client id
 var client_secret = process.env.CLIENT_SECRET; // Your secret
 var redirect_uri =  "https://peaceful-fortress-73033.herokuapp.com/callback"; // Your redirect uri
-var frontend_home = process.env.FRONTEND_DEV || "https://andrewmniu.github.io/spotify-stats/#";
+var frontend_home = process.env.FRONTEND_DEV || process.env.FRONTEND_HOME;
 
 
 /**
@@ -112,7 +112,7 @@ app.get("/callback", function (req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(
-          "https://andrewmniu.github.io/spotify-stats/#" +
+          frontend_home +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token,

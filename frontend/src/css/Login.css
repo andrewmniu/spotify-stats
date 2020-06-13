@@ -1,0 +1,27 @@
+.login-bg {
+  background-color: #181818;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login {
+  position: absolute;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  text-align: center;
+  color: white;
+}
+
+.login h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.login p {
+  margin-left: 10%;
+  /* text-align: left; */
+  width: 80%;
+  margin-bottom: 20px;
+}

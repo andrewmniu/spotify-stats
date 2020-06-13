@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "../css/ListItem.css";
 
 class ListItem extends React.Component {
   getGenres = () => {
@@ -38,6 +39,7 @@ class ListItem extends React.Component {
             className={`list-image ${this.props.listSize}`}
             alt={this.props.itemInfo.name}
           />
+          <br />
           <p className={`info ${this.props.listSize} genres`}>
             {this.getGenres()}
           </p>
@@ -68,6 +70,7 @@ class ListItem extends React.Component {
               alt={this.props.itemInfo.album}
             />
           </a>
+          <br />
           <a
             href={this.props.itemInfo.artistLink}
             target="_blank"

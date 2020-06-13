@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Controls from "./Controls.js";
 import ListItem from "./ListItem.js";
+import "../css/List.css"
 
 class List extends React.Component {
   constructor(props) {

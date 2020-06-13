@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import PropTypes from "prop-types";
 import PlaylistForm from "./PlaylistForm.js";
+import "../css/NewPlaylist.css";
 
 const defaultDescription =
   "A playlist of my top tracks created by Spotify Rewind++";
@@ -55,7 +56,7 @@ class NewPlaylist extends React.Component {
               const modal = document.getElementsByClassName("modal-content")[0];
               modal.firstElementChild.firstElementChild.textContent =
                 "Playlist Created!";
-              console.log(response);
+              // console.log(response);
               // console.log(response.images[0].url);\
               document.getElementById("new-playlist-image").src =
                 response.images[0].url;
@@ -104,14 +105,14 @@ class NewPlaylist extends React.Component {
           Create Playlist
         </button>
         <Modal show={this.state.modalShow} onHide={this.resetForm}>
-          <Modal.Header className="text-center">
+          <Modal.Header className="modal-header text-center">
             <h5 id="modal-title">Playlist Details</h5>
             <button type="button" className="close" onClick={this.resetForm}>
               <span aria-hidden="true">&times;</span>
             </button>
           </Modal.Header>
           {!this.state.justCreated && (
-            <Modal.Body>
+            <Modal.Body className="modal-content">
               <PlaylistForm
                 title={this.props.title}
                 dropdownSize={this.state.dropdownSize}
@@ -128,7 +129,7 @@ class NewPlaylist extends React.Component {
           )}
           {this.state.justCreated && (
             <React.Fragment>
-              <Modal.Body>
+              <Modal.Body className="modal-content">
                 <h2 className="text-center mt-3">{this.state.playlistName}</h2>
                 <img
                   id="new-playlist-image"
@@ -161,10 +162,8 @@ class NewPlaylist extends React.Component {
 }
 
 NewPlaylist.propTypes = {
-  // itemType: PropTypes.bool.isRequired,
-  // toggleItems: PropTypes.func.isRequired,
+  itemType: PropTypes.bool.isRequired,
   timeRange: PropTypes.string.isRequired,
-  // changeTimeRange: PropTypes.func.isRequired,
   spotifyApi: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
 };

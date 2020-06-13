@@ -1,0 +1,107 @@
+header {
+  background: url(../images/spotify-theme-music-bkg-dark.png);
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  padding: 20px 0;
+  color: white;
+}
+
+header h1 {
+  font-size: 70px;
+  font-weight: bold;
+  margin: 0;
+}
+
+header h2 {
+  font-size: 50px;
+  margin: 0;
+}
+
+.body {
+  background-color: #181818;
+  padding-top: 20px;
+}
+
+.spotify-btn {
+  background-color: #1db954;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 5px 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.spotify-btn:hover {
+  background-color: #1ed760;
+}
+
+.spotify-btn:focus {
+  outline: none;
+}
+
+.spotify-btn:disabled {
+  background-color: #6c757d;
+  border: white solid 2px;
+  color: white;
+  padding: 3px 23px;
+}
+
+.spotify-btn-2 {
+  background-color: inherit;
+  border: white solid 2px;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 3px 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.spotify-btn-2:hover {
+  background-color: white;
+  color: #121212;
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  width: 66px;
+  height: 34px;
+  -webkit-appearance: none;
+  background: #03a9f4;
+  border-radius: 17px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+input:checked[type="checkbox"] {
+  background: #1db954;
+}
+
+input[type="checkbox"]:before {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  top: 0;
+  left: 0;
+  background: rgb(175, 175, 175);
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+input:checked[type="checkbox"]:before {
+  left: 34px;
+}

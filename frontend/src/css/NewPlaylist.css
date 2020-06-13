@@ -1,0 +1,50 @@
+.modal-content {
+  background-color: #181818;
+  color: white;
+}
+
+.modal-header {
+  background-color: #282828;
+  text-align: center;
+  border: none;
+}
+
+.modal-header h5 {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.close {
+  color: white;
+  transition: 0.25s;
+}
+
+.close:focus {
+  outline: none;
+}
+
+.modal-title {
+  position: absolute;
+}
+
+#submit {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.modal-footer {
+  display: block;
+  background-color: #282828;
+  border: none;
+  text-align: center;
+}
+
+#new-playlist-image {
+  width: 90%;
+  height: 90%;
+  margin-left: 5%;
+  padding-bottom: 20px;
+}

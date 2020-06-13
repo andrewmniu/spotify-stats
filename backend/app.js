@@ -16,7 +16,9 @@ require('dotenv').config();
 
 var client_id = process.env.CLIENT_ID; // Your client id
 var client_secret = process.env.CLIENT_SECRET; // Your secret
-var redirect_uri =  "https://peaceful-fortress-73033.herokuapp.com/callback"// "http://localhost:8888/callback"; // Your redirect uri
+var redirect_uri =  "https://peaceful-fortress-73033.herokuapp.com/callback"; // Your redirect uri
+var frontend_home = process.env.FRONTEND_DEV || "https://andrewmniu.github.io/spotify-stats/#";
+
 
 /**
  * Generates a random string containing numbers and letters

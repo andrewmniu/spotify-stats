@@ -12,7 +12,7 @@ class Login extends React.Component {
             until December for Spotify Wrapped? Now you can with Spotify
             Wrapped++!
           </p>
-          <a href="http://localhost:8888/login">
+          <a href="https://peaceful-fortress-73033.herokuapp.com/login">
             <button className="spotify-btn">Log in with Spotify</button>
           </a>
         </div>

@@ -17,7 +17,7 @@ require('dotenv').config();
 var client_id = process.env.CLIENT_ID; // Your client id
 var client_secret = process.env.CLIENT_SECRET; // Your secret
 var redirect_uri =  "https://peaceful-fortress-73033.herokuapp.com/callback"; // Your redirect uri
-var frontend_home = process.env.FRONTEND_DEV || process.env.FRONTEND_HOME;
+var frontend_home = process.env.FRONTEND_HOME;
 
 
 /**

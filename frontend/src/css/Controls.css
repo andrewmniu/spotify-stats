@@ -8,7 +8,6 @@
   top: 0;
   z-index: 1;
   background-color: #121212;
-  /* background-color: orange; */
   color: white;
   padding: 1% 0;
   height: 10%;
@@ -30,16 +29,8 @@
   margin: 0 10px;
 }
 
-.btn-control {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-  /* justify-content: center; */
-}
-
 .controls select {
   margin: 0px 10px;
-  /* margin-bottom: 5px; */
   height: 34px;
 }
 
@@ -102,6 +93,11 @@ input[type="radio"] {
   .controls select {
     -webkit-appearance: none;
   }
+
+  .controls select:hover{
+    background-color: inherit;
+    color: white;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -111,7 +107,7 @@ input[type="radio"] {
     grid-template-rows: 40% 40%;
     position: relative;
     top: 0;
-    font-size: 14px;
+    font-size: 16px;
     color: white;
     grid-row-gap: 15px;
     padding: 15px 0px;
@@ -155,11 +151,6 @@ input[type="radio"] {
     background-size: 8px 8px;
     background-repeat: no-repeat;
     background-position: 93% center;
-  }
-
-  .controls select:hover{
-    background-color: inherit;
-    color: white;
   }
 
   #ls-1{

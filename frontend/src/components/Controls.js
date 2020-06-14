@@ -26,9 +26,7 @@ class Controls extends React.Component {
           itemType={this.props.itemType}
           timeRange={this.props.timeRange}
           spotifyApi={this.props.spotifyApi}
-          title={`My ${this.props.title[0].substring(5)} - ${
-            this.props.title[1]
-          }`}
+          title={this.props.title}
         ></NewPlaylist>
         <ListSizing changeListSize={this.props.changeListSize}></ListSizing>
       </div>

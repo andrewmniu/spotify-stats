@@ -5,23 +5,41 @@ import PropTypes from "prop-types";
 import PlaylistForm from "./PlaylistForm.js";
 import "../css/NewPlaylist.css";
 
-const defaultDescription =
-  "A playlist of my top tracks created by Spotify Rewind++";
-
 class NewPlaylist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       dropdownSize: 1,
-      playlistSize: "50",
+      playlistType: "Top Tracks",
       playlistName: "",
-      playlistDescription: defaultDescription,
+      placeholder: "",
+      playlistDescription: "",
+      playlistSize: "50",
       justCreated: false,
       modalShow: false,
     };
   }
 
+  componentDidMount() {
+    this.getDefaultValues(this.state.playlistType);
+  }
+
+  createSimilarPlaylist = (topTracks) => {
+    const seeds = [...getRandom(topTracks.items.map((track) => track.id))];
+
+    return this.props.spotifyApi
+      .getRecommendations({
+        limit: this.state.playlistSize,
+        seed_tracks: seeds,
+      })
+      .then((response) => {
+        return response.tracks.map((track) => track.uri);
+      });
+  };
+
   createPlaylist = async (e) => {
+    const typeBool = this.state.playlistType === "Top Tracks";
+    const playlistSize = typeBool ? this.state.playlistSize : 25;
     document.getElementById("submit-btn").innerHTML =
       '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
     e.preventDefault();
@@ -37,15 +55,18 @@ class NewPlaylist extends React.Component {
       })
       .then((response) => {
         playlistId = response.id;
-        // console.log(response);
       });
     await this.props.spotifyApi
       .getMyTopTracks({
         time_range: this.props.timeRange,
-        limit: this.state.playlistSize,
+        limit: playlistSize,
       })
-      .then((response) => {
-        return response.items.map((track) => track.uri);
+      .then((topTracks) => {
+        if (typeBool) {
+          return topTracks.items.map((track) => track.uri);
+        } else {
+          return this.createSimilarPlaylist(topTracks);
+        }
       })
       .then((trackURIs) => {
         this.props.spotifyApi
@@ -69,12 +90,23 @@ class NewPlaylist extends React.Component {
 
   resetForm = () => {
     document.getElementById("modal-title").textContent = "Playlist Details";
+    this.getDefaultValues("Top Tracks");
     this.setState({
+      playlistType: "Top Tracks",
       playlistName: "",
-      playlistDescription: defaultDescription,
       playlistSize: "50",
       justCreated: false,
       modalShow: false,
+    });
+  };
+
+  getDefaultValues = (type) => {
+    const placeholder = "My " + type + " - " + this.props.title[1];
+    const playlistDescription = `A playlist of my ${type.toLowerCase()} created by Spotify Rewind++`;
+    this.setState({
+      playlistType: type,
+      placeholder,
+      playlistDescription,
     });
   };
 
@@ -114,12 +146,14 @@ class NewPlaylist extends React.Component {
           {!this.state.justCreated && (
             <Modal.Body className="modal-content">
               <PlaylistForm
-                title={this.props.title}
+                title={this.state.placeholder}
                 dropdownSize={this.state.dropdownSize}
                 playlistSize={this.state.playlistSize}
+                playlistType={this.state.playlistType}
                 playlistName={this.state.playlistName}
                 playlistDescription={this.state.playlistDescription}
                 createPlaylist={this.createPlaylist}
+                getDefaultValues={this.getDefaultValues}
                 onChange={this.onChange}
                 onFocus={this.onFocus}
                 onBlur={this.onBlur}
@@ -165,7 +199,22 @@ NewPlaylist.propTypes = {
   itemType: PropTypes.bool.isRequired,
   timeRange: PropTypes.string.isRequired,
   spotifyApi: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.array.isRequired,
 };
+
+function getRandom(arr) {
+  let n = 5;
+  var result = new Array(n),
+    len = arr.length,
+    taken = new Array(len);
+  if (n > len)
+    throw new RangeError("getRandom: more elements taken than available");
+  while (n--) {
+    var x = Math.floor(Math.random() * len);
+    result[n] = arr[x in taken ? taken[x] : x];
+    taken[x] = --len in taken ? taken[len] : len;
+  }
+  return result;
+}
 
 export default NewPlaylist;

@@ -18,6 +18,18 @@ class PlaylistForm extends React.Component {
     return (
       <form className="modal-body" onSubmit={this.props.createPlaylist}>
         <div className="form-group">
+          <label htmlFor="exampleFormControlSelect">Playlist Type</label>
+          <select
+            className="form-control"
+            id="exampleFormControlSelect"
+            value={this.props.playlistType}
+            onChange={(e) => this.props.getDefaultValues(e.target.value)}
+          >
+            <option>Top Tracks</option>
+            <option>Personalized Recommendations</option>
+          </select>
+        </div>
+        <div className="form-group">
           <label htmlFor="playlistName">Playlist Name</label>
           <input
             type="text"
@@ -66,9 +78,11 @@ PlaylistForm.propTypes = {
   title: PropTypes.string.isRequired,
   dropdownSize: PropTypes.number.isRequired,
   playlistSize: PropTypes.string.isRequired,
+  playlistType: PropTypes.string.isRequired,
   playlistName: PropTypes.string.isRequired,
   playlistDescription: PropTypes.string.isRequired,
   createPlaylist: PropTypes.func.isRequired,
+  getDefaultValues: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,

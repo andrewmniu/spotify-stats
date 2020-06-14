@@ -98,6 +98,12 @@ input[type="radio"] {
   background-position: center center;
 }
 
+@media screen{
+  .controls select {
+    -webkit-appearance: none;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .controls {
     display: grid;
@@ -141,6 +147,19 @@ input[type="radio"] {
     grid-row-start: 2;
     grid-row-end: 3;
     order: 2;
+  }
+
+  .controls select {
+    -webkit-appearance: none;
+    background: url(../images/triangle.png);
+    background-size: 8px 8px;
+    background-repeat: no-repeat;
+    background-position: 93% center;
+  }
+
+  .controls select:hover{
+    background-color: inherit;
+    color: white;
   }
 
   #ls-1{

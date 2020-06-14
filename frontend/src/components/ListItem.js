@@ -51,14 +51,25 @@ class ListItem extends React.Component {
           <p className={`rank ${this.props.listSize}`}>
             {this.props.itemInfo.rank}.{" "}
           </p>
-          <a
-            href={this.props.itemInfo.link}
-            target="_blank"
-            className={`link ${this.props.listSize}`}
-            rel="noopener noreferrer"
-          >
-            {this.props.itemInfo.name}
-          </a>{" "}
+          <div className="info-container large">
+            <a
+              href={this.props.itemInfo.link}
+              target="_blank"
+              className={`link ${this.props.listSize}`}
+              rel="noopener noreferrer"
+              >
+              {this.props.itemInfo.name}
+            </a>{" "}
+            <br />
+            <a
+              href={this.props.itemInfo.artistLink}
+              target="_blank"
+              className={`info ${this.props.listSize}`}
+              rel="noopener noreferrer"
+              >
+              {this.props.itemInfo.artist}
+            </a>
+          </div>
           <a
             href={this.props.itemInfo.albumLink}
             target="_blank"
@@ -69,15 +80,6 @@ class ListItem extends React.Component {
               className={`list-image ${this.props.listSize}`}
               alt={this.props.itemInfo.album}
             />
-          </a>
-          <br />
-          <a
-            href={this.props.itemInfo.artistLink}
-            target="_blank"
-            className={`info ${this.props.listSize}`}
-            rel="noopener noreferrer"
-          >
-            {this.props.itemInfo.artist}
           </a>
         </div>
       );

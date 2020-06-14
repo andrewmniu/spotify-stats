@@ -10,11 +10,12 @@ class NewPlaylist extends React.Component {
     super(props);
     this.state = {
       dropdownSize: 1,
+      // form field start
       playlistType: "Top Tracks",
       playlistName: "",
-      placeholder: "",
       playlistDescription: "",
       playlistSize: "50",
+      // form field end
       justCreated: false,
       modalShow: false,
     };
@@ -25,8 +26,10 @@ class NewPlaylist extends React.Component {
   }
 
   createSimilarPlaylist = (topTracks) => {
-    const seeds = [...getRandom(topTracks.items.map((track) => track.id))];
+    // select 5 random tracks and get their seeds
+    const seeds = getRandom(topTracks.items.map((track) => track.id));
 
+    // get recommendations and return track URIs
     return this.props.spotifyApi
       .getRecommendations({
         limit: this.state.playlistSize,
@@ -38,13 +41,19 @@ class NewPlaylist extends React.Component {
   };
 
   createPlaylist = async (e) => {
+    // checks which playlist to make
     const typeBool = this.state.playlistType === "Top Tracks";
+    // sets playlist size directly for top tracks playlist
+    // gets top 25 to select 5 random seeds from for personal recommendations
     const playlistSize = typeBool ? this.state.playlistSize : 25;
+    // loading animation
     document.getElementById("submit-btn").innerHTML =
       '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
     e.preventDefault();
     let id = null;
     let playlistId = null;
+
+    // make a new playlist
     await this.props.spotifyApi.getMe().then((response) => {
       id = response.id;
     });
@@ -56,29 +65,35 @@ class NewPlaylist extends React.Component {
       .then((response) => {
         playlistId = response.id;
       });
+
+    // get track URIs
     await this.props.spotifyApi
       .getMyTopTracks({
         time_range: this.props.timeRange,
         limit: playlistSize,
       })
       .then((topTracks) => {
+        // directly get track URIs from top tracks
         if (typeBool) {
           return topTracks.items.map((track) => track.uri);
-        } else {
+        }
+        // pass top 25 to get 5 randomly selected seeds to generate recommended tracks
+        // return the trackURIs from these recmomended tracks
+        else {
           return this.createSimilarPlaylist(topTracks);
         }
       })
       .then((trackURIs) => {
+        // add tracks to playlist
         this.props.spotifyApi
           .addTracksToPlaylist(playlistId, trackURIs)
           .then(() => {
             this.props.spotifyApi.getPlaylist(playlistId).then((response) => {
               this.setState({ justCreated: true });
+              // display confirmation of playlist creation
               const modal = document.getElementsByClassName("modal-content")[0];
               modal.firstElementChild.firstElementChild.textContent =
                 "Playlist Created!";
-              // console.log(response);
-              // console.log(response.images[0].url);\
               document.getElementById("new-playlist-image").src =
                 response.images[0].url;
               document.getElementById("open-playlist").href =
@@ -93,7 +108,6 @@ class NewPlaylist extends React.Component {
     this.getDefaultValues("Top Tracks");
     this.setState({
       playlistType: "Top Tracks",
-      playlistName: "",
       playlistSize: "50",
       justCreated: false,
       modalShow: false,
@@ -101,11 +115,11 @@ class NewPlaylist extends React.Component {
   };
 
   getDefaultValues = (type) => {
-    const placeholder = "My " + type + " - " + this.props.title[1];
-    const playlistDescription = `A playlist of my ${type.toLowerCase()} created by Spotify Rewind++`;
+    const playlistName = "My " + type + " - " + this.props.title[1];
+    const playlistDescription = `A playlist of my ${type.toLowerCase()} (${this.props.title[1].toLowerCase()}) created by Spotify Rewind++`;
     this.setState({
       playlistType: type,
-      placeholder,
+      playlistName,
       playlistDescription,
     });
   };
@@ -131,7 +145,10 @@ class NewPlaylist extends React.Component {
         <button
           type="button"
           className="spotify-btn control grid-2-2"
-          onClick={() => this.setState({ modalShow: true })}
+          onClick={() => {
+            this.getDefaultValues(this.state.playlistType);
+            this.setState({ modalShow: true });
+          }}
           disabled={this.props.itemType}
         >
           Create Playlist
@@ -146,7 +163,6 @@ class NewPlaylist extends React.Component {
           {!this.state.justCreated && (
             <Modal.Body className="modal-content">
               <PlaylistForm
-                title={this.state.placeholder}
                 dropdownSize={this.state.dropdownSize}
                 playlistSize={this.state.playlistSize}
                 playlistType={this.state.playlistType}
@@ -202,8 +218,9 @@ NewPlaylist.propTypes = {
   title: PropTypes.array.isRequired,
 };
 
+// Selects 5 random elements from an array
 function getRandom(arr) {
-  let n = 5;
+  let n = arr.length > 5 ? 5 : arr.length; // error handling if array has less than 5 elements
   var result = new Array(n),
     len = arr.length,
     taken = new Array(len);

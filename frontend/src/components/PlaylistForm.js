@@ -2,9 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 class PlaylistForm extends React.Component {
+
+  // generate playlist size options for select form element
   createSelectItems() {
     let options = [];
-    for (let i = 50; i >= 10; i--) {
+    // only top 50 available for top tracks
+    // can generate up to 100 recommendations
+    const maxSize = this.props.playlistType === "Top Tracks" ? 50 : 100;
+    for (let i = maxSize; i >= 10; i--) {
       options.push(
         <option key={i} value={i}>
           {i}
@@ -35,8 +40,7 @@ class PlaylistForm extends React.Component {
             type="text"
             className="form-control"
             id="playlistName"
-            placeholder={this.props.title}
-            value={this.props.playlistName}
+            defaultValue={this.props.playlistName}
             onChange={this.props.onChange}
             required
           ></input>
@@ -75,7 +79,6 @@ class PlaylistForm extends React.Component {
 }
 
 PlaylistForm.propTypes = {
-  title: PropTypes.string.isRequired,
   dropdownSize: PropTypes.number.isRequired,
   playlistSize: PropTypes.string.isRequired,
   playlistType: PropTypes.string.isRequired,

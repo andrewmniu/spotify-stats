@@ -7,6 +7,7 @@ class ListItem extends React.Component {
     const genreArray = [...this.props.itemInfo.genres];
     let genres = "";
     if (genreArray.length > 0) {
+      // this is a function to capitalize the first letter of every word
       genres += genreArray[0].replace(/\w\S*/g, function (txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
@@ -19,6 +20,7 @@ class ListItem extends React.Component {
     return genres;
   };
 
+// two different renders depending on whether tracks or artists are being displayed
   render() {
     if (this.props.itemType) {
       return (

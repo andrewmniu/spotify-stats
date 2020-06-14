@@ -98,7 +98,7 @@ class NewPlaylist extends React.Component {
       <React.Fragment>
         <button
           type="button"
-          className="spotify-btn control"
+          className="spotify-btn control grid-2-2"
           onClick={() => this.setState({ modalShow: true })}
           disabled={this.props.itemType}
         >

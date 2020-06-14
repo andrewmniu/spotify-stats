@@ -105,3 +105,71 @@ input[type="checkbox"]:before {
 input:checked[type="checkbox"]:before {
   left: 34px;
 }
+
+@media screen and (max-width: 600px){
+  header {
+    background-position:left;
+  }
+
+  header h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  header h2 {
+    font-size: 30px;
+    margin: 0;
+  }
+
+  .list-group{
+    width: 95%;
+    padding: 0;
+  }
+
+  .spotify-btn {
+    background-color: #1db954;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 5px 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.5s;
+  }
+
+  .spotify-btn:hover {
+    background-color: #1ed760;
+  }
+
+  .spotify-btn:focus {
+    outline: none;
+  }
+
+  .spotify-btn:disabled {
+    background-color: #6c757d;
+    border: white solid 2px;
+    color: white;
+    padding: 3px 23px;
+  }
+
+  .spotify-btn-2 {
+    background-color: inherit;
+    border: white solid 2px;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 3px 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.5s;
+  }
+
+  .spotify-btn-2:hover {
+    background-color: white;
+    color: #121212;
+  }
+}

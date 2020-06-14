@@ -8,13 +8,13 @@ class Controls extends React.Component {
   render() {
     return (
       <div className="controls">
-        <div className="toggle control">
+        <div className="toggle control grid-1-1">
           <p className="toggle-label">Tracks</p>
           <input type="checkbox" onChange={this.props.toggleItems}></input>
           <p className="toggle-label">Artists</p>
         </div>
         <select
-          className="spotify-btn-2 control"
+          className="spotify-btn-2 control grid-2-1"
           value={this.props.timeRange}
           onChange={this.props.changeTimeRange}
         >

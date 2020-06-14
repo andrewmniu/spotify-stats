@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 class ListSizing extends React.Component {
   render() {
     return (
-      <div className="btn-group control" data-toggle="buttons">
+      <div className="btn-group control grid-1-2" data-toggle="buttons">
         <button
           className="btn list-sizing active"
           onClick={this.props.changeListSize}

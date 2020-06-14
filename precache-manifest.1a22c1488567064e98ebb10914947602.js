@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "24a9b88ef54a5b9a382a6c756660c776",
+    "revision": "1d78b0160e967699a67de640d6ba4e7e",
     "url": "/spotify-stats/index.html"
   },
   {
-    "revision": "76222cc6e05140435e17",
+    "revision": "b9c2f4be99a1d8743882",
     "url": "/spotify-stats/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "25383af0f274956b7734",
+    "revision": "71af07c280deddf937c4",
     "url": "/spotify-stats/static/css/main.415a1087.chunk.css"
   },
   {
-    "revision": "76222cc6e05140435e17",
-    "url": "/spotify-stats/static/js/2.243954b4.chunk.js"
+    "revision": "b9c2f4be99a1d8743882",
+    "url": "/spotify-stats/static/js/2.ca2cba62.chunk.js"
   },
   {
     "revision": "5ac48c47bb3912b14c2d8de4f56d5ae8",
-    "url": "/spotify-stats/static/js/2.243954b4.chunk.js.LICENSE.txt"
+    "url": "/spotify-stats/static/js/2.ca2cba62.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "25383af0f274956b7734",
-    "url": "/spotify-stats/static/js/main.63ecb8f0.chunk.js"
+    "revision": "71af07c280deddf937c4",
+    "url": "/spotify-stats/static/js/main.ec662005.chunk.js"
   },
   {
     "revision": "60111d87ff58fe8e6ff2",

@@ -30,6 +30,7 @@
 }
 
 .controls select {
+  -webkit-appearance: none;
   margin: 0px 10px;
   height: 34px;
 }
@@ -66,7 +67,15 @@ input[type="radio"] {
   box-shadow: none;
 }
 
+#ls-gallery {
+  background: url(../images/gallery.png);
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 #ls-1 {
+  margin-left: -1px;
   background: url(../images/large.png);
   background-size: 16px 16px;
   background-repeat: no-repeat;
@@ -87,17 +96,6 @@ input[type="radio"] {
   background-size: 16px 16px;
   background-repeat: no-repeat;
   background-position: center center;
-}
-
-@media screen{
-  .controls select {
-    -webkit-appearance: none;
-  }
-
-  .controls select:hover{
-    background-color: inherit;
-    color: white;
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -151,6 +149,11 @@ input[type="radio"] {
     background-size: 8px 8px;
     background-repeat: no-repeat;
     background-position: 93% center;
+  }
+
+  .controls select:hover{
+    background-color: inherit;
+    color: white;
   }
 
   #ls-1{

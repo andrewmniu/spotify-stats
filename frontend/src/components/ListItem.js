@@ -3,23 +3,6 @@ import PropTypes from "prop-types";
 import "../css/ListItem.css";
 
 class ListItem extends React.Component {
-  getGenres = () => {
-    const genreArray = [...this.props.itemInfo.genres];
-    let genres = "";
-    if (genreArray.length > 0) {
-      // this is a function to capitalize the first letter of every word
-      genres += genreArray[0].replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      });
-      for (let genre of genreArray.slice(1)) {
-        genres += `, ${genre.replace(/\w\S*/g, function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        })}`;
-      }
-    }
-    return genres;
-  };
-
 // two different renders depending on whether tracks or artists are being displayed
   render() {
     if (this.props.itemType) {
@@ -39,7 +22,7 @@ class ListItem extends React.Component {
             </a>
             <br />
             <p className={`info ${this.props.listSize} genres`}>
-              {this.getGenres()}
+              {this.props.getGenres(this.props.itemInfo)}
             </p>
           </div>
           <img

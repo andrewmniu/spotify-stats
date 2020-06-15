@@ -40,7 +40,7 @@ class PlaylistForm extends React.Component {
             type="text"
             className="form-control"
             id="playlistName"
-            defaultValue={this.props.playlistName}
+            value={this.props.playlistName}
             onChange={this.props.onChange}
             required
           ></input>

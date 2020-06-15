@@ -6,6 +6,14 @@ class ListSizing extends React.Component {
     return (
       <div className="btn-group control grid-1-2" data-toggle="buttons">
         <button
+          className="btn list-sizing"
+          onClick={this.props.changeListSize}
+          value="gallery"
+          id="ls-gallery"
+        >
+          <input type="radio" name="options"></input>
+        </button>
+        <button
           className="btn list-sizing active"
           onClick={this.props.changeListSize}
           value="large"
